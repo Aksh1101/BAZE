@@ -83,7 +83,7 @@ fun Announcements(authViewModel: AuthViewModel, navHostController: NavHostContro
                     textAlign = TextAlign.Center,
                     color = Color.Black
                 )
-                Spacer(modifier = Modifier.width(40.dp))
+                Spacer(modifier = Modifier.width(60.dp))
 
                 Column(horizontalAlignment = Alignment.End) {
 

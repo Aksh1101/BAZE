@@ -24,8 +24,7 @@ class AuthViewModel : ViewModel() {
     val announcements: LiveData<List<Announcements>> = _announcements
 
 
-    private val auth : FirebaseAuth = FirebaseAuth.getInstance()
-
+    private val firebaseAuth : FirebaseAuth = FirebaseAuth.getInstance()
 
 
     init {
@@ -34,8 +33,8 @@ class AuthViewModel : ViewModel() {
     }
 
     fun checkAuthStatus(){
-        val user = auth.currentUser
-        if(auth.currentUser == null){
+        val user = firebaseAuth.currentUser
+        if(firebaseAuth.currentUser == null){
             _authState.value = AuthState.unauthenticated
         }else{
             _authState.value = AuthState.authenticated
@@ -52,7 +51,7 @@ class AuthViewModel : ViewModel() {
         }
         _authState.value =AuthState.loading
 
-        auth.signInWithEmailAndPassword(email,password)
+        firebaseAuth.signInWithEmailAndPassword(email,password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful){
                     _authState.value = AuthState.authenticated
@@ -65,7 +64,7 @@ class AuthViewModel : ViewModel() {
     fun signup(email: String, password: String, mobileNumber: String, role: String) {
         _authState.value = AuthState.loading
 
-        auth.createUserWithEmailAndPassword(email, password)
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener { result ->
                 val uid = result.user?.uid ?: return@addOnSuccessListener
 
@@ -96,7 +95,7 @@ class AuthViewModel : ViewModel() {
 
 
     fun fetchUserProfile() {
-        val uid = auth.currentUser?.uid ?: return
+        val uid = firebaseAuth.currentUser?.uid ?: return
 
         FirebaseFirestore.getInstance().collection("users").document(uid)
             .get()
@@ -147,7 +146,7 @@ class AuthViewModel : ViewModel() {
 
 
     fun signOut(){
-        auth.signOut()
+        firebaseAuth.signOut()
         _authState.value = AuthState.unauthenticated
     }
 

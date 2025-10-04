@@ -69,7 +69,9 @@ fun HomeScreen(navHostController: NavHostController,authViewModel: AuthViewModel
         ) {
 
             Row(modifier = Modifier.padding(top = 10.dp)
-                .fillMaxWidth()) {
+                .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically) {
 
                 Text(
                     text = "BAZE",
@@ -81,7 +83,7 @@ fun HomeScreen(navHostController: NavHostController,authViewModel: AuthViewModel
                 )
                 Spacer(modifier = Modifier.width(50.dp))
 
-                Column(horizontalAlignment = Alignment.End) {
+                Column(horizontalAlignment = Alignment.End,){
                     Icon(imageVector = Icons.AutoMirrored.Filled.ExitToApp,
                         contentDescription = "Logout Icon",
                         tint = Color.Black,
@@ -113,15 +115,20 @@ fun HomeScreen(navHostController: NavHostController,authViewModel: AuthViewModel
                 modifier = Modifier.padding(20.dp)
             )
 
-            Row(modifier = Modifier.padding(30.dp),
+            Column(modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center) {
+
+                Row(modifier = Modifier.padding(30.dp)
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Absolute.Center) {
 
                 Column {
                     Image(painter = painterResource(R.drawable.announcements),
-                    contentDescription = "Announcements",
-                    modifier = Modifier.size(120.dp)
-                        .clickable(onClick = {navHostController.navigate(route = "announcements")}))
+                        contentDescription = "Announcements",
+                        modifier = Modifier.size(120.dp)
+                            .clickable(onClick = {navHostController.navigate(route = "announcements")}))
 
                     Text(text = "Announcements",
                         fontWeight = FontWeight.SemiBold,
@@ -146,48 +153,50 @@ fun HomeScreen(navHostController: NavHostController,authViewModel: AuthViewModel
                         modifier = Modifier.padding(5.dp)
                             .padding(start = 20.dp))
                 }
+            }
+                Row(modifier = Modifier.padding(30.dp)
+                    .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Absolute.Center) {
+                    Column {
+                        Image(painter = painterResource(R.drawable.courses),
+                            contentDescription = "courses",
+                            modifier = Modifier.size(120.dp)
+                                .clickable(onClick = {navHostController.navigate(route = "courses")},))
 
+                        Text(text = "Courses",
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 15.sp,
+                            color = Color.Black,
+                            modifier = Modifier.padding(5.dp)
+                                .padding(start = 30.dp))
+                    }
+
+                    Spacer(modifier = Modifier.width(60.dp))
+
+                    Column {
+                        Image(painter = painterResource(R.drawable.changepassword),
+                            contentDescription = "change password",
+                            modifier = Modifier.size(120.dp)
+                                .clickable(onClick = {navHostController.navigate(route = "forgotPassword")}))
+
+                        Text(text = "Change Pass",
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 15.sp,
+                            color = Color.Black,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.padding(5.dp))
+                    }
+
+                }
 
             }
 
-            Row(modifier = Modifier.padding(30.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Absolute.Center) {
-
-                Column {
-                    Image(painter = painterResource(R.drawable.courses),
-                        contentDescription = "courses",
-                        modifier = Modifier.size(120.dp)
-                            .clickable(onClick = {navHostController.navigate(route = "courses")},))
-
-                    Text(text = "Courses",
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 15.sp,
-                        color = Color.Black,
-                        modifier = Modifier.padding(5.dp)
-                            .padding(start = 30.dp)
-                            .clickable(onClick = {}))
-                }
-
-                Spacer(modifier = Modifier.width(60.dp))
-
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    Image(painter = painterResource(R.drawable.changepassword),
-                        contentDescription = "change password",
-                        modifier = Modifier.size(120.dp)
-                            .clickable(onClick = {navHostController.navigate(route = "forgotPassword")}))
-
-                    Text(text = "Change Pass",
-                        fontWeight = FontWeight.SemiBold,
-                        fontSize = 15.sp,
-                        color = Color.Black,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(5.dp)
-                            .clickable(onClick = {}))
-                }
 
 
-            }
+
+
+
 
         }
     }

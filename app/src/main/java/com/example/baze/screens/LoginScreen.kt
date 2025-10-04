@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -41,13 +43,15 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.baze.R
 import com.example.baze.viewModel.AuthState
 import com.example.baze.viewModel.AuthViewModel
-
+import kotlin.math.max
+    
 
 @Composable
 fun LoginScreen(navHostController: NavHostController ,authViewModel: AuthViewModel) {
@@ -73,7 +77,8 @@ fun LoginScreen(navHostController: NavHostController ,authViewModel: AuthViewMod
         }
     }
 
-    Box(modifier = Modifier.fillMaxSize()){
+    Box(modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center){
         Image(painter = painterResource(R.drawable.background),
             contentDescription = "background",
             contentScale = ContentScale.Crop,
@@ -81,7 +86,8 @@ fun LoginScreen(navHostController: NavHostController ,authViewModel: AuthViewMod
                 .fillMaxSize())
 
 
-        Column(modifier = Modifier.fillMaxSize()
+        Column(modifier = Modifier.widthIn(max = 600.dp)
+        .fillMaxSize()
             .verticalScroll(scrollState, enabled = isLandscape)
             .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally) {
@@ -89,8 +95,8 @@ fun LoginScreen(navHostController: NavHostController ,authViewModel: AuthViewMod
             Image(painterResource(R.drawable.logo),
                 contentDescription = "logo",
                 modifier = Modifier.padding(top = 100.dp)
-                    .size(140.dp)
-                    .padding(24.dp)
+                    .size(210.dp)
+                    .padding(10.dp)
                     )
 
             Text(text = "BAZE",
@@ -103,7 +109,7 @@ fun LoginScreen(navHostController: NavHostController ,authViewModel: AuthViewMod
                 fontWeight = FontWeight.SemiBold
             )
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(25.dp))
 
 
             OutlinedTextField(
@@ -116,7 +122,7 @@ fun LoginScreen(navHostController: NavHostController ,authViewModel: AuthViewMod
                     imeAction = ImeAction.Next
                 ),
                 modifier = Modifier.fillMaxWidth()
-                    .padding(20.dp),
+                    .padding(10.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color.White,
@@ -141,7 +147,7 @@ fun LoginScreen(navHostController: NavHostController ,authViewModel: AuthViewMod
                     imeAction = ImeAction.Done
                 ),
                 modifier = Modifier.fillMaxWidth()
-                    .padding(20.dp),
+                    .padding(10.dp),
                 shape = RoundedCornerShape(10.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Color.White,
@@ -175,7 +181,9 @@ fun LoginScreen(navHostController: NavHostController ,authViewModel: AuthViewMod
             Button(onClick = { navHostController.navigate(route = "signUp")
 
             },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .widthIn(max= 600.dp)
+                    .fillMaxWidth(1.0f)
                     .padding(horizontal = 40.dp)
                     .height(50.dp),
                 colors = ButtonDefaults.buttonColors(Color.Black,

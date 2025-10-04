@@ -84,7 +84,7 @@ class FirestoreRepository {
     ) {
         FirebaseFirestore.getInstance()
             .collection("announcements")
-            .whereIn("courseId", courseIds.take(10)) // Firestore limit: max 10 items
+            .whereIn("courseId", courseIds.take(10))
             .get()
             .addOnSuccessListener { snapshot ->
                 val announcements = snapshot.toObjects(Announcements::class.java)

@@ -23,9 +23,7 @@ fun BazeNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel){
     NavHost(navController = navHostController, startDestination = "login"){
 
         composable(route = "home") {
-            HomeScreen(
-                navHostController,
-                authViewModel)
+            HomeScreen(navHostController, authViewModel)
         }
 
         composable(route = "signUp") {
